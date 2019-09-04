@@ -34,6 +34,10 @@ func saveToFile(lines []Line, path string) {
 			delimiter = ""
 		}
 
+		if isComment(line.Key) {
+			delimiter = " "
+		}
+
 		_, err := file.WriteString(line.Key + delimiter + line.Value + "\n")
 		if err != nil {
 			fmt.Println(err.Error())
