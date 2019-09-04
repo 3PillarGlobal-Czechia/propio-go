@@ -1,17 +1,12 @@
 package main
 
 import (
-	"encoding/json"
-	"fmt"
 	"os"
-	"strings"
 )
 
 var (
 	comments   []string = []string{"#", "!"}
 	delimiters []string = []string{":", "="}
-	input      string
-	output     string
 )
 
 type property struct {
@@ -21,17 +16,9 @@ type property struct {
 
 func main() {
 	args := os.Args
-	if len(args) < 2 {
-		return
-	}
-
-	input := args[1]
-
-	json, err := json.Marshal(getProperties(input))
-	if err == nil {
-		result := strings.ReplaceAll(string(json), "\\\\", "\\")
-		fmt.Printf(result)
-	} else {
-		fmt.Printf(err.Error())
+	if len(args) == 2 {
+		input(args[1])
+	} else if len(args) == 3 {
+		output(args[1], args[2])
 	}
 }
