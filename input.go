@@ -2,10 +2,21 @@ package main
 
 import (
 	"bufio"
+	"encoding/json"
 	"fmt"
 	"os"
 	"strings"
 )
+
+func input(file string) {
+	json, err := json.Marshal(getProperties(file))
+	if err == nil {
+		result := strings.ReplaceAll(string(json), "\\\\", "\\")
+		fmt.Printf(result)
+	} else {
+		fmt.Printf(err.Error())
+	}
+}
 
 func getFile(path string) (file *os.File) {
 	file, err := os.Open(path)
