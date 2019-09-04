@@ -22,3 +22,17 @@ func main() {
 		output(args[1], args[2])
 	}
 }
+
+func isComment(line string) bool {
+	if line == "" {
+		return false
+	}
+
+	for _, value := range comments {
+		if string(line[0]) == value {
+			return true
+		}
+	}
+
+	return false
+}

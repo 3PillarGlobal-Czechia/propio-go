@@ -172,13 +172,3 @@ func isEscaped(line, delimiter string) bool {
 
 	return false
 }
-
-func isComment(line string) bool {
-	for _, value := range comments {
-		if string(line[0]) == value {
-			return true
-		}
-	}
-
-	return false
-}
