@@ -29,7 +29,12 @@ func saveToFile(lines []Line, path string) {
 	defer file.Close()
 
 	for _, line := range lines {
-		_, err := file.WriteString(line.Key + "=" + line.Value + "\n")
+		delimiter := "="
+		if line.Key == "" && line.Value == "" {
+			delimiter = ""
+		}
+
+		_, err := file.WriteString(line.Key + delimiter + line.Value + "\n")
 		if err != nil {
 			fmt.Println(err.Error())
 		}
